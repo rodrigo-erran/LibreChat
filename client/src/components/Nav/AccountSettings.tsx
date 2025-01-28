@@ -5,6 +5,7 @@ import { FileText, LogOut } from 'lucide-react';
 import { useGetUserBalance, useGetStartupConfig } from 'librechat-data-provider/react-query';
 import { LinkIcon, GearIcon, DropdownMenuSeparator } from '~/components';
 import FilesView from '~/components/Chat/Input/Files/FilesView';
+import UsersView from '~/components/Chat/Input/Users/UsersView';
 import { useAuthContext } from '~/hooks/AuthContext';
 import useAvatar from '~/hooks/Messages/useAvatar';
 import { UserIcon } from '~/components/svg';
@@ -21,6 +22,8 @@ function AccountSettings() {
   });
   const [showSettings, setShowSettings] = useState(false);
   const [showFiles, setShowFiles] = useRecoilState(store.showFiles);
+  const [showUsers, setshowUsers] = useRecoilState(store.showUsers);
+
 
   const avatarSrc = useAvatar(user);
   const name = user?.avatar ?? user?.username ?? '';
@@ -105,6 +108,14 @@ function AccountSettings() {
         )}
         <Select.SelectItem
           value=""
+          onClick={() => setshowUsers(true)}
+          className="select-item text-sm"
+        >
+          <FileText className="icon-md" aria-hidden="true" />
+          {localize('com_nav_users')}
+        </Select.SelectItem>        
+        <Select.SelectItem
+          value=""
           onClick={() => setShowSettings(true)}
           className="select-item text-sm"
         >
@@ -124,6 +135,8 @@ function AccountSettings() {
       </Select.SelectPopover>
       {showFiles && <FilesView open={showFiles} onOpenChange={setShowFiles} />}
       {showSettings && <Settings open={showSettings} onOpenChange={setShowSettings} />}
+      {showUsers && <UsersView open={showUsers} onOpenChange={setshowUsers} />}
+      
     </Select.SelectProvider>
   );
 }

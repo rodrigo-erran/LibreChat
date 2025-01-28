@@ -30,12 +30,15 @@ import {
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuTrigger,
+  PaginationControls,
 } from '~/components/ui';
 import { useDeleteFilesFromTable } from '~/hooks/Files';
 import { TrashIcon, Spinner } from '~/components/svg';
 import useLocalize from '~/hooks/useLocalize';
 import { useMediaQuery } from '~/hooks';
 import { cn } from '~/utils';
+ 
+
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -115,6 +118,25 @@ export default function DataTable<TData, TValue>({ columns, data }: DataTablePro
           onChange={(event) => table.getColumn('filename')?.setFilterValue(event.target.value)}
           className="flex-1 text-sm"
         />
+          <select
+            value={table.getState().pagination.pageSize}
+            onChange={(e) => table.setPageSize(Number(e.target.value))}
+            className="h-10 rounded-md border border-input bg-transparent px-3 text-sm" // Ajustado para combinar com os outros elementos
+          >
+            {[5, 10, 20, 30, 50, 100].filter(pageSize => {
+              const totalRows = table.getFilteredRowModel().rows.length;                
+              return pageSize <= totalRows;
+            }).map(pageSize => (
+              <option key={pageSize} value={pageSize}>
+                {localize('com_ui_show')} {pageSize} {localize('com_ui_rows')}
+              </option>
+            ))}              
+            {table.getFilteredRowModel().rows.length > 100 && (
+              <option value={table.getFilteredRowModel().rows.length}>
+                {localize('com_ui_show')} {table.getFilteredRowModel().rows.length} {localize('com_ui_rows')}
+              </option>
+            )}
+          </select>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className={cn('min-w-[40px]', isSmallScreen && 'px-2 py-1')}>
@@ -214,47 +236,7 @@ export default function DataTable<TData, TValue>({ columns, data }: DataTablePro
           </TableBody>
         </Table>
       </div>
-
-      <div className="flex items-center justify-end gap-2 py-4">
-        <div className="ml-2 flex-1 truncate text-xs text-muted-foreground sm:ml-4 sm:text-sm">
-          <span className="hidden sm:inline">
-            {localize(
-              'com_files_number_selected',
-              `${table.getFilteredSelectedRowModel().rows.length}`,
-              `${table.getFilteredRowModel().rows.length}`,
-            )}
-          </span>
-          <span className="sm:hidden">
-            {`${table.getFilteredSelectedRowModel().rows.length}/${
-              table.getFilteredRowModel().rows.length
-            }`}
-          </span>
-        </div>
-        <div className="flex items-center space-x-1 pr-2 text-xs font-bold text-text-primary sm:text-sm">
-          <span className="hidden sm:inline">{localize('com_ui_page')}</span>
-          <span>{table.getState().pagination.pageIndex + 1}</span>
-          <span>/</span>
-          <span>{table.getPageCount()}</span>
-        </div>
-        <Button
-          className="select-none"
-          variant="outline"
-          size="sm"
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
-        >
-          {localize('com_ui_prev')}
-        </Button>
-        <Button
-          className="select-none"
-          variant="outline"
-          size="sm"
-          onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
-        >
-          {localize('com_ui_next')}
-        </Button>
-      </div>
+      <PaginationControls table={table} localize={localize} />
     </div>
   );
 }

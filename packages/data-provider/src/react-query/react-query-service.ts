@@ -457,10 +457,25 @@ export const useGetCustomConfigSpeechQuery = (
 export const useGetBannerQuery = (
   config?: UseQueryOptions<t.TBannerResponse>,
 ): QueryObserverResult<t.TBannerResponse> => {
-  return useQuery<t.TBannerResponse>([QueryKeys.banner], () => dataService.getBanner(), {
-    refetchOnWindowFocus: false,
-    refetchOnReconnect: false,
-    refetchOnMount: false,
-    ...config,
-  });
+  return useQuery<t.TBannerResponse>(
+    [QueryKeys.banner], 
+    () => dataService.getBanner(), 
+    {
+      refetchInterval: 30000,  
+      refetchOnWindowFocus: true,  
+      staleTime: 0, 
+      ...config,
+    }
+  );
 };
+
+// export const useGetBannerQuery = (
+//   config?: UseQueryOptions<t.TBannerResponse>,
+// ): QueryObserverResult<t.TBannerResponse> => {
+//   return useQuery<t.TBannerResponse>([QueryKeys.banner], () => dataService.getBanner(), {
+//     refetchOnWindowFocus: false,
+//     refetchOnReconnect: false,
+//     refetchOnMount: false,
+//     ...config,
+//   });
+// };

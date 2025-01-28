@@ -526,3 +526,19 @@ export const useUserTermsQuery = (
     ...config,
   });
 };
+
+
+export const useGetUsers = (
+  config?: UseQueryOptions<t.TUsers>
+): QueryObserverResult<t.TUsers> => {
+  return useQuery<t.TUsers>(
+    [QueryKeys.users], 
+    () => dataService.getUsers(),
+    {
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+      refetchOnMount: false,
+      ...config,
+    }
+  );
+};

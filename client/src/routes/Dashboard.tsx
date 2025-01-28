@@ -5,6 +5,7 @@ import {
   CreatePromptForm,
   EmptyPromptPreview,
 } from '~/components/Prompts';
+import Settings from '~/components/Dashboard/Settings';
 import DashboardRoute from './Layouts/Dashboard';
 
 const dashboardRoutes = {
@@ -72,6 +73,10 @@ const dashboardRoutes = {
         },
       ],
     },
+    {
+      path: 'settings',  // isso fará a rota /d/settings
+      element: <Settings />,
+    },    
     {
       path: '*',
       element: <Navigate to="/d/files" replace={true} />,

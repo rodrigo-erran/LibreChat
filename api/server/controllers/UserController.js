@@ -162,6 +162,21 @@ const resendVerificationController = async (req, res) => {
   }
 };
 
+
+const getAllUsersController = async (req, res) => {
+  try {
+    const users = await User.find()
+      .select('-password')
+      .sort({ createdAt: -1 });
+
+    res.status(200).json({users});
+    
+  } catch (error) {
+    logger.error('[getAllUsersController]', error);
+    res.status(500).json({ message: 'Error fetching users' });
+  }
+};
+
 module.exports = {
   getUserController,
   getTermsStatusController,
@@ -170,4 +185,5 @@ module.exports = {
   verifyEmailController,
   updateUserPluginsController,
   resendVerificationController,
+  getAllUsersController,
 };

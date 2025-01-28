@@ -8,6 +8,15 @@ const roleSchema = new mongoose.Schema({
     unique: true,
     index: true,
   },
+  description: {
+    type: String,    
+  },
+  [PermissionTypes.USER_MANAGEMENT]: {
+    [Permissions.USE]: {
+      type: Boolean,
+      default: false,
+    },
+  },
   [PermissionTypes.BOOKMARKS]: {
     [Permissions.USE]: {
       type: Boolean,

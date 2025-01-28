@@ -224,6 +224,7 @@ export default {
   com_ui_admin_access_warning:
     'Disabling Admin access to this feature may cause unexpected UI issues requiring refresh. If saved, the only way to revert is via the interface setting in librechat.yaml config which affects all roles.',
   com_ui_role_select: 'Role',
+  com_ui_reset_columns: 'Reset Column Visibility',
   com_ui_error_save_admin_settings: 'There was an error saving your admin settings.',
   com_ui_prompt_preview_not_shared: 'The author has not allowed collaboration for this prompt.',
   com_ui_prompt_name_required: 'Prompt Name is required',
@@ -446,6 +447,7 @@ export default {
   com_ui_add_multi_conversation: 'Add multi-conversation',
   com_ui_duplicate_agent_confirm: 'Are you sure you want to duplicate this agent?',
   com_ui_page: 'Page',
+  com_ui_page_count_description: '({0} - {1}) of {2} total.',  
   com_ui_refresh_link: 'Refresh link',
   com_ui_show_qr: 'Show QR Code',
   com_ui_hide_qr: 'Hide QR Code',
@@ -454,6 +456,7 @@ export default {
   com_ui_shared_link_delete_success: 'Successfully deleted shared link',
   com_ui_shared_link_bulk_delete_success: 'Successfully deleted shared links',
   com_ui_search: 'Search',
+  com_ui_creation_date: 'Creation Date',
   com_auth_error_login:
     'Unable to login with the information provided. Please check your credentials and try again.',
   com_auth_error_login_rl:
@@ -775,6 +778,7 @@ export default {
   com_nav_shared_links_date_shared: 'Date shared',
   com_nav_source_chat: 'View source chat',
   com_nav_my_files: 'My Files',
+  com_nav_users: 'Users',
   com_nav_theme: 'Theme',
   com_nav_theme_system: 'System',
   com_nav_theme_dark: 'Dark',
@@ -908,4 +912,6 @@ export default {
   com_ui_terms_and_conditions: 'Terms and Conditions',
   com_ui_no_terms_content: 'No terms and conditions content to display',
   com_ui_speech_while_submitting: 'Can\'t submit speech while a response is being generated',
+  com_ui_show_max_rows: "Show {0} rows    ",
+ 
 };

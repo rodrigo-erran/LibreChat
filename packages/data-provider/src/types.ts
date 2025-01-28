@@ -110,6 +110,10 @@ export type TUser = {
   updatedAt: string;
 };
 
+export interface TUsers {
+  users: TUser[];
+}
+
 export type TGetConversationsResponse = {
   conversations: TConversation[];
   pageNumber: string;

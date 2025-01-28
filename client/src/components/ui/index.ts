@@ -1,3 +1,7 @@
+import { expandRows } from '@tanstack/react-table';
+import PaginationControls from './PaginationControls';
+import { SortFilterHeader } from './SortFilterHeader';
+
 export * from './AlertDialog';
 export * from './Breadcrumb';
 export * from './Button';
@@ -38,3 +42,5 @@ export { default as InputWithDropdown } from './InputWithDropDown';
 export { default as SelectDropDownPop } from './SelectDropDownPop';
 export { default as AnimatedSearchInput } from './AnimatedSearchInput';
 export { default as MultiSelectDropDown } from './MultiSelectDropDown';
+export { default as PaginationControls } from './PaginationControls';
+export {  SortFilterHeader } from './SortFilterHeader'
