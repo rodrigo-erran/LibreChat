@@ -37,8 +37,8 @@ const localStorageAtoms = {
   saveDrafts: atomWithLocalStorage('saveDrafts', true),
   forkSetting: atomWithLocalStorage('forkSetting', ''),
   splitAtTarget: atomWithLocalStorage('splitAtTarget', false),
-
   rememberDefaultFork: atomWithLocalStorage(LocalStorageKeys.REMEMBER_FORK_OPTION, false),
+  showThinking: atomWithLocalStorage('showThinking', false),
 
   // Beta features settings
   modularChat: atomWithLocalStorage('modularChat', true),
